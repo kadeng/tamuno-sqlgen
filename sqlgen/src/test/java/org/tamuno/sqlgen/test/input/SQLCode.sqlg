@@ -1,0 +1,16 @@
+
+selectUserLogin:=
+    SELECT @user_id:int, @user_name:String, @birthdate:Date 
+        FROM users 
+        WHERE 
+            user_name=$user_name AND password_hash=md5($password) 
+        LIMIT 1;
+
+selectUser:=
+    SELECT @user_id:int, ';' @user_name:String, @birthdate:Date 
+        FROM users 
+            [ WHERE 
+                [user_name=$user_name] [AND] [active=$active:int]
+            ] 
+        LIMIT 1;
+
